@@ -3,3 +3,6 @@
 
 # pyc
 *.pyc
+
+# sites
+src/sites/node_modules
