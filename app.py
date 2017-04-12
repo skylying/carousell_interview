@@ -1,11 +1,12 @@
 from src.factory import create_app
 import sys
+from src.model import db
 
 if __name__ == '__main__':
     app = create_app()
     if sys.argv[-1] == '--init':
-        from src.model import db
         with app.app_context():
+            from src.model.billboard import Topics
             db.create_all()
             from src.controller.index import bp as index_bp
             app.register_blueprint(index_bp)
