@@ -31,12 +31,16 @@
   height: 0;
 }
 .topic-box > .col-left {
-  width: 100px;
+  width: 150px;
   float: left;
 }
 .topic-box > .col-left > .wrap {
 	margin-top: 15px;
 	text-align: center; 
+}
+.topic-box > .col-left > .wrap > .wrap-left {
+  width: 70px;
+  float: left;
 }
 .custom-textarea {
   width: 90%;
@@ -62,10 +66,18 @@
 	color: gray;
 }
 .topic-box > .col-right {
-	width: 798px;
+	width: 748px;
 	float: left;
 }
 .topic-box > .col-right > p {
   padding: 10px;
   font-size: 18px;
+}
+.emptyPlaceholder > .text {
+  font-size: 30px;
+  color: #999;
+  display: block;
+  margin: 0 auto;
+  text-align: center;
+  margin-top: 100px;
 }

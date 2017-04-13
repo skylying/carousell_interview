@@ -9,7 +9,8 @@ export default function(list=defaultList, action) {
     case 'TOPIC_ADDED':
     	var topic = {
     		'id': action.payload.id,
-    		'votes': action.payload.votes,
+    		'upvotes': action.payload.upvotes,
+        'downvotes': action.payload.downvotes,
     		'content': action.payload.content
     	}
       //[...list, topic]
@@ -21,19 +22,19 @@ export default function(list=defaultList, action) {
       break;
     case 'TOPIC_UPVOTED':
       var id = action.payload.id;
-      var votes = action.payload.votes;
+      var upvotes = action.payload.upvotes;
       list.map(function(t) {
         if(t.id == id) {
-          return t.votes = votes;
+          return t.upvotes = upvotes;
         }
       })
       return [...list]
     case 'TOPIC_DOWNVOTED':
     var id = action.payload.id;
-    var votes = action.payload.votes;
+    var downvotes = action.payload.downvotes;
     list.map(function(t) {
       if(t.id == id) {
-        return t.votes = votes;
+        return t.downvotes = downvotes;
       }
     })
     return [...list]

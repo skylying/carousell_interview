@@ -26,7 +26,8 @@ def add_topic(form):
 
     data = dict(
         id=new_topic.id,
-        votes=new_topic.votes,
+        upvotes=new_topic.upvotes,
+        downvotes=new_topic.downvotes,
         content=new_topic.content
     )
 
@@ -44,7 +45,8 @@ def get_topic():
         for t in topic_list:
             topic = dict(
                 id=t.id,
-                votes=t.votes,
+                upvotes=t.upvotes,
+                downvotes=t.downvotes,
                 content=t.content
             )
             data['topic_list'].append(topic)
@@ -64,7 +66,8 @@ def up_vote(topic_id):
 
     data = dict(
         id=topic.id,
-        votes=topic.votes
+        upvotes=topic.upvotes,
+        downvotes=topic.downvotes,
     )
 
     return api_ok(data=data)
@@ -81,7 +84,8 @@ def down_vote(topic_id):
 
     data = dict(
         id=topic.id,
-        votes=topic.votes
+        upvotes=topic.upvotes,
+        downvotes=topic.downvotes,
     )
 
     return api_ok(data=data)

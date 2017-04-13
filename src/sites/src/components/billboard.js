@@ -15,8 +15,8 @@ export default class Billboard extends React.Component {
 
 	onKeyPress(self, event) {
 		if (event.key == 'Enter') {
-			if (this.validateInput()) {
-				event.preventDefault();
+			event.preventDefault();
+			if (self.validateInput()) {
 				self.props.addTopic(self.textInput.value.trim());
 				self.clearInput();
 			}
@@ -46,19 +46,27 @@ export default class Billboard extends React.Component {
 		var self = this;
 		if (this.props.data.length > 0) {
 			this.props.data.sort(function(a,b) {
-				return a.votes < b.votes
+				return a.upvotes < b.upvotes
 			})
+			this.props.data.forEach(function(t) {
+				topicBoxList.push(<TopicBox
+					upVote={self.props.upVote}
+					downVote={self.props.downVote}
+				  upvotes={t.upvotes}
+				  downvotes={t.downvotes} 
+				  content={t.content} 
+				  id={t.id}
+				  key={t.id}/>
+			  )
+			})
+		} else {
+			topicBoxList = (
+				<div className="emptyPlaceholder">
+        	<span className="text">{"--- Be the first one to put topic ---"}</span>
+        </div>
+			)
 		}
-		this.props.data.forEach(function(t) {
-			topicBoxList.push(<TopicBox
-				upVote={self.props.upVote}
-				downVote={self.props.downVote}
-			  votes={t.votes} 
-			  content={t.content} 
-			  id={t.id}
-			  key={t.id}/>
-		  )
-		})
+		
 
 		return (
 			<div id="container-fluid">

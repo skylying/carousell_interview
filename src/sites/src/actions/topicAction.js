@@ -14,7 +14,7 @@ export function addTopic(content) {
       data: JSON.stringify(data),
       success: function(res) {
         if(res.code == 200) {
-          dispatch(onTopicAdded(res.data.id, res.data.votes, res.data.content))
+          dispatch(onTopicAdded(res.data.id, res.data.upvotes, res.data.downvotes, res.data.content))
         }
       },
       error: function(error) {
@@ -25,12 +25,13 @@ export function addTopic(content) {
   }
 }
 
-export function onTopicAdded(id, votes, content) {
+export function onTopicAdded(id, upvotes, downvotes, content) {
   return {
     type: 'TOPIC_ADDED',
     payload: {
       'id': id,
-      'votes': votes,
+      'upvotes': upvotes,
+      'downvotes': downvotes,
       'content': content
     }
   };
@@ -79,7 +80,7 @@ export function upVote(topic_id) {
       type: 'POST',
       success: function(res) {
         if(res.code == 200) {
-          dispatch(onAfterUpvote(res.data.id, res.data.votes))
+          dispatch(onAfterUpvote(res.data.id, res.data.upvotes))
         }
       },
       error: function(error) {
@@ -90,12 +91,12 @@ export function upVote(topic_id) {
   }
 }
 
-export function onAfterUpvote(id, votes) {
+export function onAfterUpvote(id, upvotes) {
   return {
     type: 'TOPIC_UPVOTED',
     payload: {
       'id': id,
-      'votes': votes
+      'upvotes': upvotes
     }
   };
 }
@@ -111,7 +112,7 @@ export function downVote(topic_id) {
       type: 'POST',
       success: function(res) {
         if(res.code == 200) {
-          dispatch(onAfterDownvote(res.data.id, res.data.votes))
+          dispatch(onAfterDownvote(res.data.id, res.data.downvotes))
         }
       },
       error: function(error) {
@@ -122,12 +123,12 @@ export function downVote(topic_id) {
   }
 }
 
-export function onAfterDownvote(id, votes) {
+export function onAfterDownvote(id, downvotes) {
   return {
     type: 'TOPIC_DOWNVOTED',
     payload: {
       'id': id,
-      'votes': votes
+      'downvotes': downvotes
     }
   };
 }
