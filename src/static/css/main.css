@@ -23,6 +23,9 @@
 	min-height: 90px;
   border-bottom: 1px solid #ddd;
 }
+.topic-box:hover {
+  background-color: #eee;
+}
 .topic-box:after {
 	visibility: hidden;
   display: block;
@@ -57,6 +60,15 @@
   display: inline-block;
   font-size: 20px;
   padding: 5px;
+}
+.glyphicon:hover {
+  opacity: .9;
+}
+.glyphicon-thumbs-up {
+  color: green;
+}
+.glyphicon-thumbs-down {
+  color: red; 
 }
 .counter {
 	font-size: 18px;

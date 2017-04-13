@@ -46,7 +46,7 @@ export default class Billboard extends React.Component {
 		var self = this;
 		if (this.props.data.length > 0) {
 			this.props.data.sort(function(a,b) {
-				return a.upvotes < b.upvotes
+				return parseInt(b.upvotes) - parseInt(a.upvotes)
 			})
 			this.props.data.forEach(function(t) {
 				topicBoxList.push(<TopicBox

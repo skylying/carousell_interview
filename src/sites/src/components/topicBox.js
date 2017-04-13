@@ -17,11 +17,11 @@ export default class TopicBox extends React.Component {
       		<div className="wrap">
             <div className="wrap-left">
               <div className="counter text-center">{this.props.upvotes}</div>
-              <span className="glyphicon glyphicon-thumbs-up" style={{"color": "green"}} onClick={this.upVote.bind(this)} aria-hidden="true"></span>
+              <span className="glyphicon glyphicon-thumbs-up" onClick={this.upVote.bind(this)} aria-hidden="true"></span>
             </div>
             <div className="wrap-right">
               <div className="counter text-center">{this.props.downvotes}</div>
-              <span className="glyphicon glyphicon-thumbs-down" style={{"color": "red"}} onClick={this.downVote.bind(this)}aria-hidden="true"></span>
+              <span className="glyphicon glyphicon-thumbs-down" onClick={this.downVote.bind(this)}aria-hidden="true"></span>
             </div>
       		</div>
       	</div>
