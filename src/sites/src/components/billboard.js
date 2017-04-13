@@ -18,6 +18,11 @@ export default class Billboard extends React.Component {
 		// TODO: Deal with no topic situation
 		var topicBoxList = [];
 		var self = this;
+		if (this.props.data.length > 0) {
+			this.props.data.sort(function(a,b) {
+				return a.votes < b.votes
+			})
+		}
 		this.props.data.forEach(function(t) {
 			topicBoxList.push(<TopicBox
 				upVote={self.props.upVote}
