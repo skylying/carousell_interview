@@ -12,34 +12,34 @@
   <script src="../static/js/bootstrap.min.js"></script>
   <script src="../static/bundle.js"></script>
   <script>
-    var addBtn = $('#add');
-    addBtn.on('click', function(){
-      $.ajax({
-        url: '/ajax/topic',
-        type: 'POST',
-        success: function(response) {
-            console.log(response);
-        },
-        error: function(error) {
-            console.log(error);
-        }
-      })
-    })
+    // var addBtn = $('#add');
+    // addBtn.on('click', function(){
+    //   $.ajax({
+    //     url: '/ajax/topic',
+    //     type: 'POST',
+    //     success: function(response) {
+    //         console.log(response);
+    //     },
+    //     error: function(error) {
+    //         console.log(error);
+    //     }
+    //   })
+    // })
 
 
-    var getBtn = $('#get');
-    getBtn.on('click', function(){
-      $.ajax({
-        url: '/ajax/topic',
-        type: 'GET',
-        success: function(response) {
-            console.log(response);
-        },
-        error: function(error) {
-            console.log(error);
-        }
-      })
-    })
+    // var getBtn = $('#get');
+    // getBtn.on('click', function(){
+    //   $.ajax({
+    //     url: '/ajax/topic',
+    //     type: 'GET',
+    //     success: function(response) {
+    //         console.log(response);
+    //     },
+    //     error: function(error) {
+    //         console.log(error);
+    //     }
+    //   })
+    // })
   </script>
 </body>
 
