@@ -17,8 +17,16 @@ export default class Billboard extends React.Component {
 	render() {
 		// TODO: Deal with no topic situation
 		var topicBoxList = [];
+		var self = this;
 		this.props.data.forEach(function(t) {
-			topicBoxList.push(<TopicBox count={t.count} content={t.content} key={t.id}/>)
+			topicBoxList.push(<TopicBox
+				upVote={self.props.upVote}
+				downVote={self.props.downVote}
+			  votes={t.votes} 
+			  content={t.content} 
+			  id={t.id}
+			  key={t.id}/>
+		  )
 		})
 
 		return (
@@ -32,7 +40,6 @@ export default class Billboard extends React.Component {
 	              type="text" className="form-control" placeholder="What's on your mind?" />
 	            <span className="input-group-btn">
 	              <button id="add" className="btn btn-success" type="button" onClick={this.onAddClick.bind(this)}>Add</button>
-	              <button id="get" className="btn btn-success" type="button">Get</button>
 	            </span>
 	          </div>
 	        </div>

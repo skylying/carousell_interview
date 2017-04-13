@@ -6,7 +6,14 @@ from src.model import db
 from src.forms import validate_json_schema
 from src.forms import AddTopicForm
 
+from src.exceptions import CSNotFoundException
+from src.helper import api_err, api_ok
+
 bp = Blueprint('ajax', __name__)
+
+@bp.errorhandler(CSNotFoundException)
+def existed_handler(err):
+    return api_err('NOT_FOUND', message=err.message), 404
 
 # Add topic API
 @bp.route('/topic', methods=['POST'])
@@ -22,10 +29,8 @@ def add_topic(form):
         votes=new_topic.votes,
         content=new_topic.content
     )
-    return jsonify(
-        code=200,
-        data=data
-    )
+
+    return api_ok(data=data)
 
 
 # Get topic API
@@ -44,7 +49,39 @@ def get_topic():
             )
             data['topic_list'].append(topic)
 
-    return jsonify(
-        code=200,
-        data=data
+    return api_ok(data=data)
+
+
+# Up vote topic API
+@bp.route('/upvote/<string:topic_id>', methods=['POST'])
+def up_vote(topic_id):
+
+    topic = Topics.query.filter_by(id=topic_id).first()
+    if topic is None:
+        raise CSNotFoundException(message="Topic id:{} not found".format(id))
+
+    topic.upvote()
+
+    data = dict(
+        id=topic.id,
+        votes=topic.votes
     )
+
+    return api_ok(data=data)
+
+# Up vote topic API
+@bp.route('/downvote/<string:topic_id>', methods=['POST'])
+def down_vote(topic_id):
+
+    topic = Topics.query.filter_by(id=topic_id).first()
+    if topic is None:
+        raise CSNotFoundException(message="Topic id:{} not found".format(id))
+
+    topic.downvote()
+
+    data = dict(
+        id=topic.id,
+        votes=topic.votes
+    )
+
+    return api_ok(data=data)

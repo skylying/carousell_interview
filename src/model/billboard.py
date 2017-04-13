@@ -9,3 +9,11 @@ class Topics(db.Model):
     votes = db.Column(db.Integer(), default=0)
     _ctime = db.Column(db.DateTime(timezone=False), default=func.now())
     _mtime = db.Column(db.DateTime(timezone=False), onupdate=func.now())
+
+    def upvote(self):
+        self.votes = self.votes + 1
+        db.session.commit()
+
+    def downvote(self):
+        self.votes = self.votes - 1
+        db.session.commit()

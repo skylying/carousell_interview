@@ -1,24 +1,41 @@
 import { List, Map } from 'immutable';
-import $ from 'jquery';
 
-var topicList = List([]);
+const defaultList = List([]);
 
-export default function(list=topicList, action) {
+export default function(list=defaultList, action) {
   switch(action.type) {
     case 'TOPIC_ADDED':
-    	console.log("content = " , action.payload);
+    	console.log("payload = " , action.payload);
     	var topic = {
     		'id': action.payload.id,
     		'votes': action.payload.votes,
     		'content': action.payload.content
     	}
-	    return [...list, topic]
+      //[...list, topic]
+      list.push(topic)
+	    return [...list]
       break;
     case 'TOPIC_RECEIVED':
-      console.log("payload = " , action.payload);
-      console.log(action.payload);
       return action.payload.topic_list
       break;
+    case 'TOPIC_UPVOTED':
+      var id = action.payload.id;
+      var votes = action.payload.votes;
+      list.map(function(t) {
+        if(t.id == id) {
+          return t.votes = votes;
+        }
+      })
+      return [...list]
+    case 'TOPIC_DOWNVOTED':
+    var id = action.payload.id;
+    var votes = action.payload.votes;
+    list.map(function(t) {
+      if(t.id == id) {
+        return t.votes = votes;
+      }
+    })
+    return [...list]
     default:
       return list;
   }
