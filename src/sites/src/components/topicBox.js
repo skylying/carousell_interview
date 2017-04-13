@@ -21,6 +21,7 @@ export default class TopicBox extends React.Component {
       		</div>
       	</div>
       	<div className="col-right">
+          <span className="topic-id">{"id:" + this.props.id}</span>
       		<p>{this.props.content}</p>
       	</div>
       </div>

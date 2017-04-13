@@ -3,9 +3,10 @@ import { List, Map } from 'immutable';
 const defaultList = List([]);
 
 export default function(list=defaultList, action) {
+  console.log('[Reducer] Action Type :', action.type);
+  console.log('[Reducer] Payload :', action.payload);
   switch(action.type) {
     case 'TOPIC_ADDED':
-    	console.log("payload = " , action.payload);
     	var topic = {
     		'id': action.payload.id,
     		'votes': action.payload.votes,

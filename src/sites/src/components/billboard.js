@@ -7,7 +7,33 @@ export default class Billboard extends React.Component {
 	//const { data, addTopic } = props;
 
 	onAddClick() {
-	  this.props.addTopic(this.textInput.value);
+		if (this.validateInput()) {
+			this.props.addTopic(this.textInput.value.trim());
+	  	this.clearInput();
+		}
+	}
+
+	onKeyPress(self, event) {
+		if (event.key == 'Enter') {
+			if (this.validateInput()) {
+				event.preventDefault();
+				self.props.addTopic(self.textInput.value.trim());
+				self.clearInput();
+			}
+		}
+	}
+
+	validateInput() {
+		var isValid = true;
+		var value = this.textInput.value;
+		if (value.trim() == '') {
+			return false
+		}
+		return isValid
+	}
+
+	clearInput() {
+		this.textInput.value = '';
 	}
 
 	componentDidMount() {
@@ -38,14 +64,15 @@ export default class Billboard extends React.Component {
 			<div id="container-fluid">
 			  <div id="billboard">
 	        <div className="head-box">
-	          <h1>Add Topic</h1>
-	          <div className="input-group">
-	            <input
+	          <h1>Weekly Billboard</h1>
+	          <div>
+	            <textarea
+	            	maxLength="255"
+	            	className="form-control custom-textarea"
+	            	onKeyPress={this.onKeyPress.bind(null, this)}
 	              ref={(input) => { this.textInput = input; }}
-	              type="text" className="form-control" placeholder="What's on your mind?" />
-	            <span className="input-group-btn">
-	              <button id="add" className="btn btn-success" type="button" onClick={this.onAddClick.bind(this)}>Add</button>
-	            </span>
+	              type="text" placeholder="Put some topic here !" />
+	              <button id="add" className="btn btn-success float" type="button" onClick={this.onAddClick.bind(this)}>Add</button>
 	          </div>
 	        </div>
 	        {topicBoxList}

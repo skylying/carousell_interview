@@ -1,15 +1,23 @@
 #billboard {
   border: 1px solid #ddd;
-  height: 900px;
+  min-height: 900px;
   width: 900px;
   margin: 0 auto;
 }
 .head-box {
-  background-color: #5bc0de;
-  height: 120px;
+  background-color: #D0D0FF;
+  height: 180px;
+}
+.btn.float {
+  float: right;
+  margin-top: 10px;
+  margin-right: 45px;
 }
 .head-box > h1 {
   text-align: center;
+  margin: 0;
+  padding-top: 15px;
+  padding-bottom: 15px;
 }
 .topic-box {
 	min-height: 90px;
@@ -29,6 +37,17 @@
 .topic-box > .col-left > .wrap {
 	margin-top: 15px;
 	text-align: center; 
+}
+.custom-textarea {
+  width: 90%;
+  margin: 0 auto;
+  resize: none;
+}
+.topic-id {
+  display: inline-block;
+  float: right;
+  padding: 10px;
+  color: #777;
 }
 .glyphicon {
   display: inline-block;

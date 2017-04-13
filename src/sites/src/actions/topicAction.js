@@ -26,7 +26,6 @@ export function addTopic(content) {
 }
 
 export function onTopicAdded(id, votes, content) {
-  console.log(id, votes, content)
   return {
     type: 'TOPIC_ADDED',
     payload: {
