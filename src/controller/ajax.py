@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template
+from flask import Blueprint, request
 from src.model.billboard import Topics
 from flask.json import jsonify
 from src.model import db
@@ -37,10 +37,20 @@ def add_topic(form):
 # Get topic API
 @bp.route('/topic', methods=['GET'])
 def get_topic():
-    
+
+    limit = request.args.get('limit', None)
+
     # Initial value
-    data = dict(topic_list=[])    
-    topic_list = Topics.query.all()
+    data = dict(
+        topic_list=[],
+        total_rows=Topics.query.count() # Extra query for total row, can be optimized as single query.
+    )
+
+    q = Topics.query
+    # Dynamically add limit
+    if limit is not None:
+        q = q.limit(limit)
+    topic_list = q.all()
     if len(topic_list) > 0:
         for t in topic_list:
             topic = dict(
