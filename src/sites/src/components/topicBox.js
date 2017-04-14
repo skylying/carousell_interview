@@ -12,7 +12,7 @@ export default class TopicBox extends React.Component {
 
   render() {
   	return (
-  		<div className="topic-box">
+  		<div className={"topic-box " + this.props.hideClass}>
       	<div className="col-left">
       		<div className="wrap">
             <div className="wrap-left">

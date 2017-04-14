@@ -3,6 +3,8 @@
   min-height: 900px;
   width: 900px;
   margin: 0 auto;
+  position: relative;
+  margin-bottom: 50px;
 }
 .head-box {
   background-color: #D0D0FF;
@@ -89,7 +91,14 @@
   font-size: 30px;
   color: #999;
   display: block;
-  margin: 0 auto;
+  margin: 50px auto;
   text-align: center;
-  margin-top: 100px;
+}
+.footer {
+  padding: 15px;
+  text-align: right;
+  background-color: #eee;
+}
+.rows-text {
+  margin-bottom: 5px;
 }

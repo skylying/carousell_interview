@@ -3,7 +3,7 @@ import $ from 'jquery';
 // =================
 // Add topic action
 
-export function addTopic(content) {
+export function addTopic(content, displayRows) {
   var data = {'content': content}
   return dispatch => {
     //dispatch(setLoadingBookState()); // Show a loading spinner
@@ -14,7 +14,7 @@ export function addTopic(content) {
       data: JSON.stringify(data),
       success: function(res) {
         if(res.code == 200) {
-          dispatch(onTopicAdded(res.data.id, res.data.upvotes, res.data.downvotes, res.data.content))
+          dispatch(queryTopics(null))
         }
       },
       error: function(error) {
@@ -40,16 +40,20 @@ export function onTopicAdded(id, upvotes, downvotes, content) {
 // =================
 // Query topic action
 
-export function queryTopics() {
+export function queryTopics(limit) {
   return dispatch => {
     //dispatch(setLoadingBookState()); // Show a loading spinner
+    var url = '/ajax/topic'
+    if (limit) {
+      url = url + '?limit=' + limit;
+    }
     $.ajax({
-      url: '/ajax/topic',
+      url: url,
       type: 'GET',
       success: function(res) {
         if(res.code == 200) {
           console.log(res.data.topic_list);
-          dispatch(onTopicReceived(res.data.topic_list))
+          dispatch(onTopicReceived(res.data.topic_list, res.data.total_rows))
         }
       },
       error: function(error) {
@@ -60,11 +64,12 @@ export function queryTopics() {
   }
 }
 
-export function onTopicReceived(topic_list) {
+export function onTopicReceived(topic_list, total_rows) {
   return {
     type: 'TOPIC_RECEIVED',
     payload: {
-      'topic_list': topic_list
+      'topicList': topic_list,
+      'totalRows': total_rows
     }
   };
 }
@@ -132,3 +137,20 @@ export function onAfterDownvote(id, downvotes) {
     }
   };
 }
+
+// =================
+// Toggle topics visibility
+export function toggleVisibilityToAll(id, downvotes) {
+  return {
+    type: 'TOGGLE_ALL'
+  };
+}
+
+export function toggleVisibilityToPartial(id, downvotes) {
+  return {
+    type: 'TOGGLE_PARTIAL'
+  };
+}
+
+
+

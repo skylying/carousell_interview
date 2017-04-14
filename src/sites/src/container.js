@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import OriginalBoard from './components/billboard';
-import { addTopic, queryTopics, upVote, downVote } from './actions/topicAction';
+import { addTopic, queryTopics, upVote, downVote, toggleVisibilityToAll, toggleVisibilityToPartial } from './actions/topicAction';
 
 export const Billboard = connect(
   function mapStateToProps(state) {
@@ -8,10 +8,12 @@ export const Billboard = connect(
   },
   function mapDispatchToProps(dispatch) {
     return {
-    	addTopic: content => dispatch(addTopic(content)),
-    	queryTopics: () => dispatch(queryTopics()),
-    	upVote: id => dispatch(upVote(id)),
-    	downVote: id => dispatch(downVote(id))
+      addTopic: content => dispatch(addTopic(content)),
+      queryTopics: limit => dispatch(queryTopics(limit)),
+      upVote: id => dispatch(upVote(id)),
+      downVote: id => dispatch(downVote(id)),
+      toggleVisibilityToAll: () => dispatch(toggleVisibilityToAll()),
+      toggleVisibilityToPartial: () => dispatch(toggleVisibilityToPartial())
     }
   }
 )(OriginalBoard);
