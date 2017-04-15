@@ -6,3 +6,7 @@
 
 # sites
 src/sites/node_modules
+
+# bundle.js
+src/static/bundle.js
+
