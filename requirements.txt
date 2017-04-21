@@ -3,3 +3,4 @@ SQLAlchemy==1.0.9
 Flask-SQLAlchemy==2.1
 WTForms==2.0.2
 WTForms-JSON==0.2.10
+PyDbLite==3.0.4
