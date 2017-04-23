@@ -8,3 +8,6 @@ class CustomException(Exception):
 
 class CSNotFoundException(CustomException):
     pass
+
+class CSInvalidInputTypeException(CustomException):
+    pass

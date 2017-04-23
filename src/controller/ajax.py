@@ -6,12 +6,17 @@ from src.model import db
 from src.forms import validate_json_schema
 from src.forms import AddTopicForm
 
-from src.exceptions import CSNotFoundException
+from src.exceptions import CSNotFoundException, CSInvalidInputTypeException
 from src.helper import api_err, api_ok
 
 from src.model.pydb_pydblite import pydb
 
 bp = Blueprint('ajax', __name__)
+
+@bp.errorhandler(CSInvalidInputTypeException)
+def existed_handler(err):
+    return api_err('BAD_REQUEST', message=err.message), 400
+
 
 @bp.errorhandler(CSNotFoundException)
 def existed_handler(err):
@@ -22,7 +27,7 @@ def existed_handler(err):
 @validate_json_schema(AddTopicForm)
 def add_topic(form):
 
-    new_topic_id = pydb.insert(content=form.content.data)
+    new_topic_id = pydb.insert(content=form.content.data, upvotes=0, downvotes=0)
     data = dict(
         id=new_topic_id,
         upvotes=0,
@@ -42,7 +47,7 @@ def get_topic():
         total_rows=0
     )
 
-    topic_list = [r for r in pydb.db]
+    topic_list = pydb.queryAll()
 
     if len(topic_list) > 0:
         for t in topic_list:
