@@ -1,6 +1,3 @@
-# Carousell Interview Challenge
----
-
 2017/4/23 Update : 
 
 ## PyDbLite
@@ -10,7 +7,7 @@ Please see `src/model/pydb_pydblite.py` for more detail
 
 ---
 
-
+# Carousell Interview Challenge
 
 ## Application Name
 Billboard
