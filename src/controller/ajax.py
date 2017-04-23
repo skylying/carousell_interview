@@ -27,12 +27,12 @@ def existed_handler(err):
 @validate_json_schema(AddTopicForm)
 def add_topic(form):
 
-    new_topic_id = pydb.insert(content=form.content.data, upvotes=0, downvotes=0)
+    new_topic = pydb.insert(content=form.content.data, upvotes=0, downvotes=0)
     data = dict(
-        id=new_topic_id,
-        upvotes=0,
-        downvotes=0,
-        content=form.content.data
+        id=new_topic['__id__'],
+        upvotes=new_topic['upvotes'],
+        downvotes=new_topic['downvotes'],
+        content=new_topic['content']
     )
     return api_ok(data=data)
 

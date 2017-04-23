@@ -43,7 +43,7 @@ class PyDbLiteDatabase():
         self.schema.validate(**kwargs)
         id = self.db.insert(**kwargs)
         self.db.commit()
-        return id
+        return self.queryById(id)
 
     def updateById(self, id, **kwargs):
         """
