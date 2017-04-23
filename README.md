@@ -1,4 +1,16 @@
 # Carousell Interview Challenge
+---
+
+2017/4/23 Update : 
+
+## PyDbLite
+`pydblite` is a pure-Python, untyped, in-memory database engine, using Python syntax to manage data, instead of SQL
+
+Please see `src/model/pydb_pydblite.py` for more detail
+
+---
+
+
 
 ## Application Name
 Billboard
